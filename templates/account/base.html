@@ -1,0 +1,18 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block static %}
+    {% endblock %}
+</head>
+<body>
+    <div class="login_wrap">
+        <div class="login_box">
+            <img src="{% static 'img/whiteLogo.jpeg' %}" onclick="location.href='{% url 'main:redirect' %}'"/>
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
+</body>
+</html>

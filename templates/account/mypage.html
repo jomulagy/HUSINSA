@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/mypage.css' %}">
+</head>
+<body>
+<div class="profile_wrap">
+    <div class="profile_box">
+        <div class="profile">
+            <div class="profile-photo">
+                <img src="{% static 'img/bear.png' %}" alt="곰돌이 얼굴 이미지">
+            </div>
+            <img src="{{user.image.url}}" id="hwFace" alt="프로필 사진">
+        </div>
+        <div class="imgBt">
+            <form action = "{% url 'account:image_update' %}" method = "post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="file" id="fileInput" name="image" accept="image/*" style="display: none;">
+                <button type="button" onclick="openFilePicker()">프로필 사진 수정</button>
+                <input type = "submit" id = "changeImageSb" style = "display:none;">
+            </form>
+        </div>
+        <div class="user-info">
+            <h2>{{user.first_name}}{{user.last_name}}</h2>
+            <p>{{user.username}}</p>
+        </div>
+        <div class="move_pages">
+            <button type="button" onclick="location.href='{% url 'item:order_list' %}'">구매 목록</button>
+            <button type="button" onclick="location.href='{% url 'item:clothe_like' %}'">좋아요 목록</button>
+        </div>
+    </div>
+</div>
+<script>
+    function openFilePicker() {
+        var fileInput = document.getElementById('fileInput');
+        fileInput.click();
+    }
+
+    function handleFileSelect(event) {
+        var file = event.target.files[0];
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            var image = document.getElementById('hwFace');
+            image.src = e.target.result;
+        };
+
+        reader.readAsDataURL(file);
+        document.getElementById('changeImageSb').click();
+    }
+
+    var fileInput = document.getElementById('fileInput');
+    fileInput.addEventListener('change', handleFileSelect);
+</script>
+</body>
+</html>

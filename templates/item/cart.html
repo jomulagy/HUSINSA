@@ -1,0 +1,30 @@
+{% extends 'item/base.html' %}
+{% load static %}
+
+{% block static %}
+  <title>좋아요 목록</title>
+  <link rel="stylesheet" href="{% static 'css/index.css' %}">
+{% endblock %}
+
+{% block content %}
+  <div class="cart_title_wrap">
+    <h3 class="like_item_title">🛒 장바구니  🛒</h3>
+    <button type="button" id="buyBt" onclick = "location.href = '{% url 'item:order_all' %}'">BUY</button>
+  </div>
+  <div class="like_box_wrap">
+    {% for cart in cart_list %}
+      <div class="item_box">
+        <img src="{{cart.clothe.image.url}}"/>
+        <div>
+          <p id="item_brand">{{cart.clothe.brand}}</p>
+          <p id="item_name">{{cart.clothe.name}}</p>
+          <p id="item_price">{{cart.clothe.price}}원</p>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,29 @@
+{% extends 'account/base.html' %}
+{% load static %}
+
+{% block static%}
+    <title>로그인</title>
+    <link rel="stylesheet" href="{% static 'css/index.css' %}" >
+    <link rel="stylesheet" href="{% static 'css/login.css' %}" >
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type = "text/javascript" src = "{% static 'js/account.js' %}"></script>
+{% endblock %}
+
+{% block content%}
+    <form action = "{% url 'account:login' %}" method = "post">
+        <div>
+
+            <h2>로그인</h2>
+            <div id="division"></div>
+
+            {% csrf_token %}
+            <input id="idInput" type="text" name = "username" placeholder="아이디" />
+            <input id="pwInput" type="password" name = "password" placeholder="비밀번호" />
+            <button type="button" id = "loginBt">로그인</button>
+            <input type = "submit" id = "loginSb" style = "display:none;">
+
+            <p onclick="location.href='{% url 'account:signup' %}'">회원이 아니신가요?</p>
+
+        </div>
+    </form>
+{% endblock %}

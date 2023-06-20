@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block static %}
+    {% endblock %}
+</head>
+<body>
+    <div class="main_wrap">
+        <div class="main_nav">
+            <img src="{% static 'img/blackLogo.jpeg' %}"  onclick="location.href='{% url 'main:redirect' %}'"/>
+        </div>
+        <div class="main_member">
+            {% if user.is_authenticated %}
+                <button type="button" onclick="location.href='{% url 'account:logout' %}'">로그아웃</button>
+                <div>
+                    <p onclick="location.href='{% url 'account:userDetail' %}'">마이페이지</p>
+                    <p id="likePage" onclick="location.href='{% url 'item:clothe_like' %}'">좋아요</p>
+                    <p onclick="location.href='{% url 'item:cart_list' %}'">장바구니</p>
+
+                </div>
+            {% else %}
+                <button type="button" onclick="location.href='{% url 'account:login' %}'">로그인</button>
+                <div>
+                    <p id="promotion">지금 회원가입 하시고 후신사를 즐겨보세용</p>
+                </div>
+            {% endif %}
+
+        </div>
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>

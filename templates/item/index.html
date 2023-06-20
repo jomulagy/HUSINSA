@@ -1,0 +1,37 @@
+{% extends 'item/base.html' %}
+{% load static %}
+
+{% block static %}
+    <title>후신사</title>
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="{% static 'js/index.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+
+        <div class="category_item_wrap">
+            <div class="category_wrap">
+                <h3>카테고리</h3>
+                <p onclick="location.href = '{% url 'item:clothe_list' 'all' %}'">전체</p>
+                <p onclick="location.href = '{% url 'item:clothe_list' 'shirts' %}'">상의</p>
+                <p onclick="location.href = '{% url 'item:clothe_list' 'pants' %}'">하의</p>
+                <p onclick="location.href = '{% url 'item:clothe_list' 'shoes' %}';">신발</p>
+            </div>
+
+            <div class="item_wrap">
+                {% for clothe in clothe_list %}
+                    <div class = "item_box" onclick="location.href = '{% url 'item:clothe_detail' clothe.id %}'">
+                        <img src = "{{clothe.image.url}}">
+                        <div>
+                            <p id = "item_brand">{{clothe.brand}}</p>
+                            <p id = "item_brand">{{clothe.name}}</p>
+                            <p id = "item_price">{{clothe.price}}원</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+{% endblock %}
+

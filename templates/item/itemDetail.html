@@ -1,0 +1,58 @@
+{% extends 'item/base.html' %}
+{% load static %}
+
+{% block static %}
+    <title>상품 조회</title>
+    <link rel="stylesheet" href="{% static 'css/itemDetail.css' %}">
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="{% static 'js/itemDetail.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+        <div class="itemDetail_wrap">
+            <h3>상품 조회</h3>
+            <div>
+                <img id="itemImg" src = "{{clothe.image.url}}"/>
+                <div class="item_box">
+                    <div class="item_info">
+                        <div class="product_info">
+                            <h3>Product Info</h3>
+                            <p>제품정보</p>
+                        </div>
+                        <div class="brand_name">
+                            <p>브랜드</p>
+                            <p id="brandName">{{clothe.brand}}</p>
+                        </div>
+                        <div class="item_name">
+                            <p>이름</p>
+                            <p id="itemName">{{clothe.name}}</p>
+                        </div>
+                    </div>
+                    <div id="division"></div>
+                    <div>
+                        <div class="item_price">
+                            <h3>Price Info</h3>
+                            <p>가격정보</p>
+                        </div>
+                        <div class="sale_price">
+                            <p>판매가</p>
+                            <p id="salePrice">{{clothe.price}}원</p>
+                        </div>
+                    </div>
+                    <div class="sale_bt">
+                        <button type="button" class="saleBt" onclick="buyItem({{clothe.id}});">바로구매</button>
+                        <div>
+                            <div class="heart_icon_wrap" onclick="likeItem({{clothe.id}});">
+                                <img src="{% static 'img/heart.png' %}"/>
+                            </div>
+                            <div class="cart_icon_wrap"onclick="pushCart({{clothe.id}});">
+                                <img src="{% static 'img/cart.png' %}"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}
+
+

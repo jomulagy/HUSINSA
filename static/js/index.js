@@ -38,9 +38,9 @@ function showAllCategory(){
     }
 }
 
-$(document).ready(function() {
-    showAllCategory();
-});
+//$(document).ready(function() {
+//    showAllCategory();
+//});
 
 function showShirt(){
     var item = $('.item_wrap');

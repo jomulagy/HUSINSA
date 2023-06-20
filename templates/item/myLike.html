@@ -1,0 +1,23 @@
+{% extends 'item/base.html' %}
+{% load static %}
+
+{% block static %}
+    <title>좋아요 목록</title>
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+{% endblock %}
+
+{% block content %}
+    <h3 class="like_item_title">♥️ 좋아요 누른 상품  ♥️</h3>
+    <div class="like_box_wrap">
+      {% for clothe in clothe_list %}
+        <div class="item_box">
+          <img src="{{clothe.image.url}}"/>
+          <div>
+            <p id="item_brand">{{clothe.brand}}</p>
+            <p id="item_name">{{clothe.name}}</p>
+            <p id="item_price">{{clothe.price}}원</p>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+{% endblock %}
