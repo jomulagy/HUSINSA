@@ -1,0 +1,106 @@
+body{
+    margin: 0;
+}
+
+.profile{
+    position: relative;
+}
+
+.profile_wrap{
+    background-color: #d9d9d9;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+.profile_box{
+    margin: 0 auto;
+    height: 100vh;
+    width: 450px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 0 40px;
+    box-sizing: border-box;
+}
+
+.profile-photo{
+    margin-top: 30px;
+    text-align: center;
+}
+
+.profile-photo > img{
+    width: 320px;
+    height: 300px;
+    margin: 0 auto;
+}
+
+#hwFace{
+    position: absolute;
+    left: 145px;
+    top: 50px;
+    width: 100px;
+}
+
+.imgBt{
+    text-align: center;
+}
+
+.imgBt > button{
+    padding: 10px 0;
+    width: 200px;
+    border: 0;
+    color: white;
+    background-color: black;
+    border-radius: 5px;
+    font-size: 17px;
+    cursor: pointer;
+}
+
+.editCompleteBt > button{
+    padding: 10px 0;
+    width: 200px;
+    border: 0;
+    color: white;
+    background-color: black;
+    border-radius: 5px;
+    font-size: 17px;
+    cursor: pointer;
+}
+
+.user-info{
+    text-align: center;
+}
+
+.editCompleteBt{
+    margin-top: 30px;
+    text-align: center;
+}
+
+#fileInput{
+    display: none;
+}
+
+.move_pages{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin-top: 30px;
+    margin-left: 85px;
+}
+
+.move_pages > button{
+    padding: 10px 0;
+    width: 200px;
+    border: 0;
+    color: white;
+    background-color: black;
+    border-radius: 5px;
+    font-size: 17px;
+    cursor: pointer;
+}
+
+.move_pages > button:last-child{
+    margin-top: 20px;
+}

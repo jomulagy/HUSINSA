@@ -27,48 +27,70 @@ var itemArr = [
     {'id': 's8.jpg', 'brand': '캐치볼', 'name': '오리지날 플러스 피크닉', 'price': '57,254'}
 ];
 
-function showAllCategory(){
-    var item = $('.item_wrap');
-    item.empty();
-    for(var i = 0; i < itemArr.length; i+=2){
-        item.append('<div class="item_box" onclick="showDetail(' + i + ');"><img src="../static/img/' +  itemArr[i]["id"] + '"/><div><p id="item_brand">' + itemArr[i]['brand'] + '</p><p id="item_brand">' + itemArr[i]['name'] + '</p><p id="item_price">' + itemArr[i]['price'] + '원</p></div></div>');
-    }
-    for(var i = 1; i < itemArr.length; i+=2){
-        item.append('<div class="item_box" onclick="showDetail(' + i + ');"><img src="../static/img/' +  itemArr[i]["id"] + '"/><div><p id="item_brand">' + itemArr[i]['brand'] + '</p><p id="item_brand">' + itemArr[i]['name'] + '</p><p id="item_price">' + itemArr[i]['price'] + '원</p></div></div>');
-    }
+function getItemInfo() {
+    var item = localStorage.getItem('itemid');
+    var brand = document.getElementById('brandName');
+    var itemName = document.getElementById('itemName');
+    var itemImg = document.getElementById('itemImg');
+    var itemPrice = document.getElementById('salePrice');
+    var buyBt = $('.saleBt');
+    brand.innerText = itemArr[item]['brand'];
+    itemName.innerText = itemArr[item]['name'];
+    itemImg.src = '../static/img/' + itemArr[item]['id'];
+    itemPrice.innerText = itemArr[item]['price'] + '원';
+    buyBt.attr('id', item);
 }
 
-$(document).ready(function() {
-    showAllCategory();
-});
+window.onload = getItemInfo();
 
-function showShirt(){
-    var item = $('.item_wrap');
-    item.empty();
-    // var item = document.getElementsByClassName('item_wrap');
-    for(var i = 0; i < 8; i++){
-        item.append('<div class="item_box" onclick="showDetail(' + i + ');"><img src="../static/img/' +  itemArr[i]["id"] + '"/><div><p id="item_brand">' + itemArr[i]['brand'] + '</p><p id="item_brand">' + itemArr[i]['name'] + '</p><p id="item_price">' + itemArr[i]['price'] + '원</p></div></div>');
-    }
+function likeItem(id){
+    $.ajax({
+        url: '',
+        method: 'POST',
+        data:{
+            'id' : id
+            //또 뭘 보내줘야 됨?
+        }
+    })
 }
 
-function showPant(){
-    var item = $('.item_wrap');
-    item.empty();
-    for(var i = 8; i < 16; i++){
-        item.append('<div class="item_box" onclick="showDetail(' + i + ');"><img src="../static/img/' +  itemArr[i]["id"] + '"/><p id="item_brand">' + itemArr[i]['brand'] + '</p><p id="item_brand">' + itemArr[i]['name'] + '</p><p id="item_price">' + itemArr[i]['price'] + '원</p></div></div>');
-    }
+function buyItem(id){
+    var number = document.getElementById('num');
+    var csrftoken = getCookie('csrftoken');
+    $.ajax({
+        url: '/product/cart/create/',
+        method: 'POST',
+        headers: {
+            'X-CSRFToken': csrftoken
+        },
+        data:JSON.stringify({
+            "id" : id,
+        }),
+        success: function(){
+            alert('성공');
+            window.location = '/';
+        }, error: function(){
+            alert('구매 실패');
+        }
+    })
 }
 
-function showShoes(){
-    var item = $('.item_wrap');
-    item.empty();
-    for(var i = 16; i < 24; i++){
-        item.append('<div class="item_box" onclick="showDetail(' + i + ');"><img src="../static/img/' +  itemArr[i]["id"] + '"/><p id="item_brand">' + itemArr[i]['brand'] + '</p><p id="item_brand">' + itemArr[i]['name'] + '</p><p id="item_price">' + itemArr[i]['price'] + '원</p></div></div>');
-    }
+function pushCart(id){
+    var csrftoken = getCookie('csrftoken');
+    $.ajax({
+        url: '/product/cart/create/',
+        method: 'POST',
+        headers: {
+            'X-CSRFToken': csrftoken
+        },
+        data:JSON.stringify({
+            "id" : id,
+        }),
+        success: function(){
+            alert('성공');
+            window.location = '/';
+        }, error: function(){
+            alert('장바구니 넣기 실패');
+        }
+    })
 }
-function showDetail(id){
-    localStorage.setItem('itemid', id);
-    window.location = '../../templates/itemDetail.html';
-}
-
-

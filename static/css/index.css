@@ -5,7 +5,7 @@ body{
 
 .main_nav{
     background-color: black;
-    padding: 0px 20px;
+    padding: 0 20px;
 }
 
 .main_nav > img{
@@ -56,6 +56,12 @@ body{
     font-weight: bolder;
 }
 
+@media(max-width: 800px){
+    #promotion{
+        display: none;
+    }
+}
+
 .category_item_wrap{
     display: grid;
     grid-template-columns: 10vw 90vw;
@@ -74,11 +80,17 @@ body{
     font-weight: bolder;
 }
 
-.item_wrap{
+.item_wrap, .like_box_wrap{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     margin-left: 50px;
+}
+
+.like_box_wrap{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 
 .item_box{
@@ -108,5 +120,29 @@ body{
     letter-spacing: 2px;
 }
 
+.cart_title_wrap{
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-items: flex-start;
+    margin-top: 10px;
+}
+
+.like_item_title{
+    margin-left: 60px;
+}
+
+#buyBt{
+    background-color: black;
+    border: 0;
+    border-radius: 5px;
+    color: white;
+    height: 35px;
+    padding: 0 30px;
+    font-size: 15px;
+    cursor: pointer;
+    letter-spacing: 2px;
+    margin: auto 0 auto 30px;
+}
 
 

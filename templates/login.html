@@ -2,9 +2,23 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>로그인</title>
+    <link rel="stylesheet" href="../static/css/index.css" >
+    <link rel="stylesheet" href="../static/css/login.css" >
 </head>
 <body>
-
+    <div class="login_wrap">
+        <div class="login_box">
+            <img src="../static/img/whiteLogo.jpeg" onclick="location.href='./index.html'"/>
+            <div>
+                <h2>로그인</h2>
+                <div id="division"></div>
+                <input id="idInput" type="text" placeholder="아이디" />
+                <input id="pwInput" type="password" placeholder="비밀번호" />
+                <button type="button">로그인</button>
+                <p onclick="location.href='./signup.html'">회원이 아니신가요?</p>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
